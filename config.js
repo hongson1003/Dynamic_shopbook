@@ -10,4 +10,6 @@ const config = {
   ORGANIZATION_ID: process.env.NEXT_PUBLIC_ORGANIZATION_ID,
 };
 
+console.log('config: ', config)
+
 export default config;
