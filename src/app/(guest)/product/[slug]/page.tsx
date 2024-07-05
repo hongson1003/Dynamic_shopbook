@@ -1,4 +1,5 @@
 import DetailProduct from '@/containers/DetailProduct';
+import NotFoundDetail from '@/containers/DetailProduct/NotFoundDetail';
 import { productService } from '@/services/productService';
 
 const getDetailProduct = async (id: string) => {
@@ -12,6 +13,6 @@ const getDetailProduct = async (id: string) => {
 
 const DetailProductPage = async ({ params }: { params: { slug: string } }) => {
   const detail = await getDetailProduct(params.slug);
-  return detail && <DetailProduct detailProduct={detail} />;
+  return detail ? <DetailProduct detailProduct={detail} /> : <NotFoundDetail />;
 };
 export default DetailProductPage;

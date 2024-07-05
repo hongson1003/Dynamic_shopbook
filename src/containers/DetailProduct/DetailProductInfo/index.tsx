@@ -11,14 +11,14 @@ const DetailProductInfo = ({ product }: { product: ProductModel }) => {
   const rating = 5;
   return (
     <div className="md:mt-2">
-      <div className="flex flex-col md:flex-row p-2">
+      <div className="flex flex-col md:flex-row gap-4">
         <CustomImage
           avatarMetadata={product?.avatarMetadata}
           alt="dịch vụ chăm sóc thú cưng"
           className="h-full w-full md:h-1/3 md:w-1/3 object-contain rounded-md"
           errorSrc={img.src}
         />
-        <div className="h-full w-full flex-1 mt-2">
+        <div className="h-full w-full mt-2">
           <div className="flex items-center justify-between">
             <p className="text-sm font-bold">{product?.name}</p>
             <button className="h-8 w-8">

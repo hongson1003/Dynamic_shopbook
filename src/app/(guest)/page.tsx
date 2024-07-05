@@ -1,3 +1,4 @@
+import Footer from '@/containers/Footer';
 import GroupProduct from '@/containers/Home/GroupProduct';
 import GroupSlider from '@/containers/Home/GroupSlider';
 import News from '@/containers/Home/News';
@@ -44,6 +45,9 @@ const HomePage = async () => {
       {homeConfig?.configDTOs?.map((item: HomeConfigItemModel) => (
         <div key={item.id}>{renderHomeConfig(item)}</div>
       ))}
+      <div className='hidden md:block'>
+        <Footer />
+      </div>
     </div>
   );
 };

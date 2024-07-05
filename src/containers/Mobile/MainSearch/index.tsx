@@ -8,6 +8,7 @@ import { RootState } from '@/redux';
 import { productService } from '@/services/productService';
 import { QueryKey, SearchParams } from '@/types/api';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 
@@ -16,12 +17,23 @@ const MainSearch = ({ params: paramsParents }: { params: SearchParams }) => {
   const storeInfo = useSelector<RootState, OrganizationModel>(
     (state) => state.storeStore.storeInfo,
   );
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const {
     data: productData,
     fetchNextPage: fetchNextPageProduct,
-    isLoading: isLoadingProduct,
-    isFetchingNextPage: isFetchingNextPageProduct,
   } = useInfiniteQuery(
     [QueryKey.PRODUCT, storeInfo?.id, paramsParents],
     async ({ pageParam = 0 }) => {
@@ -54,23 +66,23 @@ const MainSearch = ({ params: paramsParents }: { params: SearchParams }) => {
     router.push(`/product/${item.id}`);
   };
 
+
   return (
-    <div
-      className="grid grid-cols-2 overflow-y-auto p-2 gap-2 flex-1"
-      id="product-search"
-    >
-      {productData &&
-        productData.pages.map((page) =>
-          page?.content.map((product) => (
-            <div
-              key={product.id}
-              className="rounded-md border"
-              onClick={() => handleOnClick(product)}
-            >
-              <CartItemHome data={product} />
-            </div>
-          )),
-        )}
+    <div id="product-search">
+      <div className={`${windowWidth > 768 ? 'grid grid-cols-3' : 'grid grid-cols-2'} overflow-y-auto py-2 gap-2 container`}>
+        {productData &&
+          productData.pages.map((page) =>
+            page?.content.map((product) => (
+              <div
+                key={product.id}
+                className="rounded-md border"
+                onClick={() => handleOnClick(product)}
+              >
+                <CartItemHome data={product} />
+              </div>
+            )),
+          )}
+      </div>
       <ScrollToTop elementId="product-search" />
     </div>
   );

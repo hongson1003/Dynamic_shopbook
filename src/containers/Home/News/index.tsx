@@ -13,9 +13,9 @@ import { useEffect, useState } from 'react';
 import ImageNotFound from '@/assets/images/no-image.png';
 
 const News = ({ data }: { data: HomeConfigItemModel }) => {
-  const [width, setWidth] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
   const handleResize = () => {
-    setWidth(window.innerWidth);
+    setWindowWidth(window.innerWidth);
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const News = ({ data }: { data: HomeConfigItemModel }) => {
 
   return (
     <div id={String(data.id)} className="bg-[var(--product-background-grey)] p-2">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 mb-2">
         {Array.isArray(data.cmsCategory?.avatarMetadata) &&
           data.cmsCategory.avatarMetadata.length > 0 && (
             <div className="h-[26px] w-[26px] overflow-hidden rounded-md">
@@ -52,8 +52,8 @@ const News = ({ data }: { data: HomeConfigItemModel }) => {
         settings={{
           dots: false,
           autoplay: false,
-          slidesToShow: 1,
-          centerMode: true,
+          slidesToShow: windowWidth > 768 ? 2 : 1,
+          centerMode: windowWidth > 768 ? false : true,
         }}
       >
         {data.cmsCategory?.linkDTOs?.map((item, index) => {
@@ -66,7 +66,7 @@ const News = ({ data }: { data: HomeConfigItemModel }) => {
               key={item.id}
               onClick={() => handleOnClick(item)}
             >
-              <div className="flex flex-col gap-1 overflow-hidden rounded-md bg-white p-2">
+              <div className="flex flex-col gap-1 overflow-hidden rounded-md bg-white p-1">
                 <Image
                   src={imageObj?.downloadUrl || ImageNotFound.src}
                   alt="image"

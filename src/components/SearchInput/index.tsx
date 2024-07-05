@@ -77,6 +77,7 @@ const SearchHeader: React.FC = () => {
 
   const handleShowAllResults = () => {
     setShowAllResults(true);
+    router.push('/s/')
   };
 
   const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -110,7 +111,7 @@ const SearchHeader: React.FC = () => {
                 .map((result, index) => (
                   <p
                     key={index}
-                    className="text-Slate-800 border-b border-gray-200 px-4 py-2 text-xs text-gray-800 last:border-b-0 hover:bg-gray-100"
+                    className="text-Slate-800 border-b border-gray-200 px-4 py-2 text-xs text-gray-800 last:border-b-0 hover:bg-gray-100 cursor-pointer"
                   >
                     {result.name}
                   </p>

@@ -8,6 +8,7 @@ import CheckAllCart from './CheckAllCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFullItems } from '@/redux/slices/cart-slice';
 import Payment from './Payment';
+import SkeletonGlobal from '@/components/Skeleton';
 
 const ShoppingCart = () => {
   const [carts, setCarts] = useState<ItemCartModel[] | null>(null);
@@ -33,16 +34,21 @@ const ShoppingCart = () => {
 
   return (
     <div className="md:container h-screen">
-      <div className="hidden md:block"></div>
       {carts ? (
         <>
           {
-            carts.length > 0 && <CheckAllCart items={carts} />
+            carts.length > 0 && (
+              <>
+                <CheckAllCart items={carts} />
+                <CartList items={carts} />
+                <Payment items={carts as ItemCartModel[]} />
+              </>
+            )
           }
-          <CartList items={carts} />
-          <Payment items={carts as ItemCartModel[]} />
         </>
-      ) : 'Loading...'}
+      ) : (
+        <SkeletonGlobal count={25} />
+      )}
       {carts && carts?.length === 0 && <CardEmpty />}
     </div>
   );

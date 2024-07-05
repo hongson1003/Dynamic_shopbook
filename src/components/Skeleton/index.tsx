@@ -4,12 +4,12 @@ interface SkeletonProps {
   width?: string | number;
   height?: string | number;
 }
-const SkeletonGlobal = (props: SkeletonProps) => {
+const SkeletonGlobal = (props: SkeletonProps) => (
   <SkeletonTheme {...props}>
     <p>
-      <Skeleton count={3} />
+      <Skeleton count={props.count} />
     </p>
-  </SkeletonTheme>;
-};
+  </SkeletonTheme>
+)
 
 export default SkeletonGlobal;

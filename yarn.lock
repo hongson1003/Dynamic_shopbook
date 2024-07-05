@@ -14,6 +14,11 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@edge-runtime/cookies@^4":
+  version "4.1.1"
+  resolved "https://registry.npmjs.org/@edge-runtime/cookies/-/cookies-4.1.1.tgz"
+  integrity sha512-ATZLTOpnCUD9ZLNBIXhxOmP/UVx6BfhCjDy9P1YACpD8vrHb5Uw7YlG9RYUl1AMF7Y10TIIN3jhFbUSMiH2J7g==
+
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz"
@@ -762,6 +767,11 @@ deep-is@^0.1.3:
   version "0.1.4"
   resolved "https://registry.npmjs.org/deep-is/-/deep-is-0.1.4.tgz"
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
+
+deepmerge@^4:
+  version "4.3.1"
+  resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-4.3.1.tgz"
+  integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
 
 define-data-property@^1.0.1, define-data-property@^1.1.4:
   version "1.1.4"
@@ -1894,6 +1904,17 @@ next-auth@^4.24.7:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
+next-extra@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/next-extra/-/next-extra-0.4.0.tgz"
+  integrity sha512-MmKeHXt3xe4I5yBu/icAtH+DfDM4msPbtKVgp0p9KQdn0riMj8rCSZRR6FeRvqIh2l1bZlukslDQRMo0T01awQ==
+  dependencies:
+    "@edge-runtime/cookies" "^4"
+    deepmerge "^4"
+    next "^14"
+    p-safe "^1"
+    react "^18"
+
 next-nprogress-bar@^2.3.12:
   version "2.3.12"
   resolved "https://registry.npmjs.org/next-nprogress-bar/-/next-nprogress-bar-2.3.12.tgz"
@@ -1901,7 +1922,7 @@ next-nprogress-bar@^2.3.12:
   dependencies:
     nprogress "^0.2.0"
 
-next@14.2.3:
+next@^14, next@14.2.3:
   version "14.2.3"
   resolved "https://registry.npmjs.org/next/-/next-14.2.3.tgz"
   integrity sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==
@@ -2073,6 +2094,11 @@ p-locate@^5.0.0:
   integrity sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==
   dependencies:
     p-limit "^3.0.2"
+
+p-safe@^1:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/p-safe/-/p-safe-1.0.0.tgz"
+  integrity sha512-hEKmRlhj105fU/6G2AGLH8Hn/D4F5hhEMn0h1D4pt1868l1LUv4u3yq/MqNE/Kvyg192Y/pHZgBaFykDiIIB+A==
 
 parent-module@^1.0.0:
   version "1.0.1"
@@ -2334,7 +2360,7 @@ react-toastify@^10.0.5:
   dependencies:
     clsx "^2.1.0"
 
-react@^18.3.1:
+react@^18, react@^18.3.1:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==

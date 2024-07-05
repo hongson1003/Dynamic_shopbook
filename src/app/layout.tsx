@@ -1,11 +1,11 @@
 // RootLayout.js
+import Fire from '@/components/Fire';
 import NextProgressBarWrapper from '@/config/next/nextProgressBarWrapper';
-import type { Metadata } from 'next';
-import '@/css/tailwind.css';
 import QueryClientProviderWrapper from '@/config/next/queryClientProviderWrapper';
 import ReduxProviderWrapper from '@/config/next/reduxProviderWrapper';
+import '@/css/tailwind.css';
+import type { Metadata } from 'next';
 import 'react-loading-skeleton/dist/skeleton.css';
-import Fire from '@/components/Fire';
 
 export const metadata: Metadata = {
   title: 'Shop - Book Store',
@@ -24,7 +24,9 @@ export default function RootLayout({
         <NextProgressBarWrapper>
           <QueryClientProviderWrapper>
             <ReduxProviderWrapper>
-              <Fire>{children}</Fire>
+              <Fire>
+                {children}
+              </Fire>
             </ReduxProviderWrapper>
           </QueryClientProviderWrapper>
         </NextProgressBarWrapper>

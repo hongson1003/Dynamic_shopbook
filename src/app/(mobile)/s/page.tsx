@@ -1,15 +1,8 @@
 import { PAGE_DEFAULT } from '@/constants/defaultValue';
 import MobileHeader from '@/containers/Mobile/HeaderSearch';
 import MainSearch from '@/containers/Mobile/MainSearch';
-import { productService } from '@/services/productService';
 import { SearchParams } from '@/types/api';
-import React from 'react';
 
-const searchProductsByName = async (name: string) => {
-  const products = await productService.products({
-    name,
-  });
-};
 
 const ResultSearchPage = async ({
   searchParams,

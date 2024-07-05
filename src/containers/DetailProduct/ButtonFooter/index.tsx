@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import cartIcon from '@/assets/svg/cart-shopping-svgrepo-com.svg';
+import NotifyModal from '@/components/NotifyModal';
 import { ProductModel } from '@/models';
 import { ItemCartModel } from '@/models/itemCartModel';
 import Image from 'next/image';
+import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import NotifyModal from '@/components/NotifyModal';
 
 const ButtonFooter = ({ product }: { product: ProductModel }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,7 +53,7 @@ const ButtonFooter = ({ product }: { product: ProductModel }) => {
   };
 
   return (
-    false && <div className="fixed inset-x-0 bottom-0 flex h-16 items-center justify-between gap-4 border-t-2 border-gray-200 bg-white px-4 shadow-md md:justify-end md:px-8">
+    <div className="fixed inset-x-0 bottom-0 flex h-16 items-center justify-between gap-4 border-t-2 border-gray-200 bg-white px-4 shadow-md md:justify-end md:px-8">
       <button
         className="flex h-10 w-48 items-center justify-center gap-2 border-r-2 border-gray-200 p-2 text-gray-700 transition-colors duration-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 max-sm:flex-1"
         aria-label="Consultation"

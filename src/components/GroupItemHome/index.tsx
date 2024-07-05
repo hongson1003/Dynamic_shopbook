@@ -2,12 +2,26 @@
 import CustomImage from '@/components/Image';
 import SliderWrapper from '@/components/SliderWrapper';
 import { HomeConfigItemModel, ProductModel } from '@/models';
-import React from 'react';
+import React, { useEffect } from 'react';
 import CartItemHome from '../CartItemHome';
 import { useRouter } from 'next/navigation';
 
 const GroupItemHome = ({ data }: { data: HomeConfigItemModel }) => {
   const router = useRouter();
+  const [windowWidth, setWindowWidth] = React.useState<number>(0);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  }
+
   const handleOnClick = (item: ProductModel) => {
     router.push(`/product/${item.id}`);
   };
@@ -28,15 +42,14 @@ const GroupItemHome = ({ data }: { data: HomeConfigItemModel }) => {
           {data.cmsCategory?.name}
         </p>
       </div>
-      {/* aspect-[25/15] w-full sm:aspect-[16/7.5] md:aspect-[16/6.5] */}
       <div className="mt-2">
         <SliderWrapper
           settings={{
-            slidesToShow: 2,
+            slidesToShow: windowWidth > 768 ? 4 : 2,
             slidesToScroll: 1,
             dots: false,
-            centerMode: true,
-            centerPadding: '10%',
+            centerMode: windowWidth > 768 ? false : true,
+            centerPadding: windowWidth > 768 ? '0px' : '10%',
             swipeToSlide: true,
           }}
         >

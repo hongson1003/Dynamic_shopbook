@@ -1,12 +1,11 @@
 // RootLayout.js
-import Footer from '@/containers/Footer';
 import Header from '@/containers/Header';
 import Menu from '@/containers/Menu';
 // import Menu
-import type { Metadata } from 'next';
-import '@/css/global.css';
 import ProModal from '@/components/BannerModal';
 import ScrollToTop from '@/components/ScrollToTop';
+import '@/css/global.css';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Shop - Book Store',
@@ -25,10 +24,7 @@ export default function RootLayout({
       <div className="hidden md:block">
         <Menu />
       </div>
-      <main className="flex-grow">{children}</main>
-      <div className="hidden md:block">
-        <Footer />
-      </div>
+      <main className="flex-grow py-2">{children}</main>
       <ProModal />
       <ScrollToTop />
     </div>

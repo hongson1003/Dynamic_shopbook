@@ -45,7 +45,7 @@ const DetailProduct = ({ detailProduct }: { detailProduct: ProductModel }) => {
   }, [storeInfo, detailProduct]);
 
   return (
-    <div className="bg-gray-100">
+    <div className="container px-2">
       <div className="hidden md:block">
         <Breadcrumb title={'Chi tiết sản phẩm'} />
       </div>

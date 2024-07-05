@@ -18,7 +18,7 @@ const CartItemHome = ({ data }: CartItemHomeProps) => {
     setRating(Math.ceil(Math.random() * 10) % 2 === 0 ? 5 : 4)
   }, [])
   return (
-    <div className="card flex cursor-pointer flex-col items-center rounded-md bg-white p-2">
+    <div className="card flex cursor-pointer flex-col items-center rounded-md bg-white p-1">
       <CustomImage
         avatarMetadata={data.avatarMetadata}
         alt="product img"
