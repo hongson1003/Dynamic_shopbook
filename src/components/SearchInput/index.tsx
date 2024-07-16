@@ -1,6 +1,7 @@
 'use client';
 import searchIcon from '@/assets/svg/search.svg';
 import { PAGE_DEFAULT } from '@/constants/defaultValue';
+import { PRODUCT, SEARCH } from '@/constants';
 import { useDebounce } from '@/hooks';
 import { OrganizationModel } from '@/models';
 import { RootState } from '@/redux';
@@ -16,6 +17,7 @@ const SearchHeader: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [showAllResults, setShowAllResults] = useState(false);
+  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
   const searchDebounce = useDebounce(searchTerm, 1000);
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const router = useRouter();
@@ -77,12 +79,12 @@ const SearchHeader: React.FC = () => {
 
   const handleShowAllResults = () => {
     setShowAllResults(true);
-    router.push('/s/')
+    router.push(SEARCH)
   };
 
   const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
     if (windowWidth < 768) {
-      router.push('/s/');
+      router.push(SEARCH);
     }
   };
 
@@ -111,7 +113,11 @@ const SearchHeader: React.FC = () => {
                 .map((result, index) => (
                   <p
                     key={index}
-                    className="text-Slate-800 border-b border-gray-200 px-4 py-2 text-xs text-gray-800 last:border-b-0 hover:bg-gray-100 cursor-pointer"
+                    className="border-b border-gray-200 px-4 py-2 text-xs last:border-b-0 text-[--text-light-color] hover:text-blue-500 cursor-pointer"
+                    onClick={() => {
+                      setSearchTerm('');
+                      router.push(`${PRODUCT}/${result.id}`)
+                    }}
                   >
                     {result.name}
                   </p>

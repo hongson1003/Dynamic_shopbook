@@ -9,6 +9,7 @@ export interface SearchParams {
   ascending?: boolean;
   customerIds?: string;
   [key: string]: any;
+  organizationId?: string;
 }
 
 export interface PostResponse<T> {

@@ -13,6 +13,7 @@ export interface CmsCategoryModel {
   target?: string;
   linkDTOs?: CmsLinkModel[];
   renderType?: CmsCategoryRenderType;
+  children?: CmsCategoryModel[];
 }
 
 export enum CmsCategoryRenderType {
@@ -21,9 +22,8 @@ export enum CmsCategoryRenderType {
   PRODUCT_GROUP = 'PRODUCT_GROUP',
   PROMOTION = 'PROMOTION',
   ARTICLE = 'ARTICLE',
-  ZALO_ARTICLE = 'ZALO_ARTICLE',
   LINK = 'LINK',
   MEMBER_CARD = 'MEMBER_CARD',
   PROMOTION_NUMBER = 'PROMOTION_NUMBER',
-  MY_PARTNER= 'MY_PARTNER',
+  MY_PARTNER = 'MY_PARTNER',
 }

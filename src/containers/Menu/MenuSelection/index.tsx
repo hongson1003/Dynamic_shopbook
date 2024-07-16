@@ -1,5 +1,7 @@
 'use client'
 import Link from "next/link";
+import styles from './index.module.css';
+import { usePathname } from "next/navigation";
 
 const MenuSelection = ({ href, title, id }: { href: string, title: string, id: number }) => {
     const handleOnClick = (id: number) => {
@@ -8,13 +10,14 @@ const MenuSelection = ({ href, title, id }: { href: string, title: string, id: n
             element.scrollIntoView({ behavior: 'smooth' });
         }
     }
+    const pathname = usePathname();
     return (
-        <Link
+        (pathname==='/') && <Link
             href={`#`}
-            className="flex items-center justify-center min-w-fit border-t-2 border-x-2 rounded-sm"
+            className={`items-center ml-2 mt-2 rounded-md ${styles.linkItem}`}
             onClick={() => handleOnClick(id)}
         >
-            <span className="inline-block px-3 py-1 text-center text-black hover:text-sky-500 sm:text-sm text-sm">
+            <span className="inline-block px-2 py-1 text-center text-[--text-light-color]">
                 {title}
             </span>
         </Link>

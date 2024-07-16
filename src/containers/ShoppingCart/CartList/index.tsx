@@ -14,7 +14,7 @@ const CartList = ({ items }: { items: ItemCartModel[] }) => {
   };
 
   return (
-    <div className="p-2">
+    <div className="p-2 pb-16">
       {items.map((product: ItemCartModel) => (
         <div className="my-2" key={product.id}>
           <CartItem item={product} checked={checkIsChecked(product)} />

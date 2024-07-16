@@ -10,7 +10,7 @@ import Image from 'next/image';
 const DetailProductInfo = ({ product }: { product: ProductModel }) => {
   const rating = 5;
   return (
-    <div className="md:mt-2">
+    <div className="md:mt-2 p-2">
       <div className="flex flex-col md:flex-row gap-4">
         <CustomImage
           avatarMetadata={product?.avatarMetadata}
@@ -19,17 +19,8 @@ const DetailProductInfo = ({ product }: { product: ProductModel }) => {
           errorSrc={img.src}
         />
         <div className="h-full w-full mt-2">
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-bold">{product?.name}</p>
-            <button className="h-8 w-8">
-              <Image
-                src={ShareSvg}
-                alt="share icon"
-                width={1000}
-                height={1000}
-                className="h-full w-full object-cover"
-              />
-            </button>
+          <div className="flex items-center justify-between md:py-5">
+            <p className="text-sm font-bold md:text-xl">{product?.name}</p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -38,7 +29,7 @@ const DetailProductInfo = ({ product }: { product: ProductModel }) => {
             </span>
           </div>
 
-          <div className="flex w-full items-center gap-2">
+          <div className="flex w-full items-center gap-2 mt-2">
             <div className="flex flex-grow items-center gap-1">
               <span className="mr-1 rounded-sm bg-orange-400 px-1">
                 {rating}
@@ -58,12 +49,18 @@ const DetailProductInfo = ({ product }: { product: ProductModel }) => {
                 );
               })}
             </div>
-            <span className="font-semibold text-pink-800">
-              Đã bán{' '}
-              {convertNumberToNumberText(
-                product?.totalSales === undefined ? 0 : product.totalSales,
-              )}
-            </span>
+            {product.totalSales ?
+              <span className="font-semibold text-pink-800">
+                Đã bán{' '}
+                {convertNumberToNumberText(
+                  product?.totalSales === undefined ? 0 : product.totalSales,
+                )}
+              </span>
+              :
+              <span className="font-semibold text-pink-800">
+                Đã bán{' '}0
+              </span>
+            }
           </div>
         </div>
       </div>

@@ -3,11 +3,9 @@ const nextConfig = {
   images: {
     domains: [
       'api-staging.addy.vn',
-      'intero.vn',
-      'blog.btaskee.com',
-      'stc.shopiness.vn',
-      'media.viez.vn',
       '192.168.100.14',
+      'https://api.addy.vn',
+      'api.addy.vn'
     ],
   },
 };

@@ -2,6 +2,7 @@
 import CartItemHome from '@/components/CartItemHome';
 import ScrollToTop from '@/components/ScrollToTop';
 import { PAGE_DEFAULT } from '@/constants/defaultValue';
+import { PRODUCT } from '@/constants';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { CmsLinkModel, OrganizationModel } from '@/models';
 import { RootState } from '@/redux';
@@ -63,13 +64,13 @@ const MainSearch = ({ params: paramsParents }: { params: SearchParams }) => {
   useInfiniteScroll(fetchNextPageProduct, 'product-search');
 
   const handleOnClick = (item: CmsLinkModel) => {
-    router.push(`/product/${item.id}`);
+    router.push(`${PRODUCT}/${item.id}`);
   };
 
 
   return (
-    <div id="product-search">
-      <div className={`${windowWidth > 768 ? 'grid grid-cols-3' : 'grid grid-cols-2'} overflow-y-auto py-2 gap-2 container`}>
+    <>
+      <div id='product-search' className={`${windowWidth > 768 ? 'grid grid-cols-4' : 'grid grid-cols-2'} overflow-y-auto p-2 gap-2 container`}>
         {productData &&
           productData.pages.map((page) =>
             page?.content.map((product) => (
@@ -84,7 +85,7 @@ const MainSearch = ({ params: paramsParents }: { params: SearchParams }) => {
           )}
       </div>
       <ScrollToTop elementId="product-search" />
-    </div>
+    </>
   );
 };
 

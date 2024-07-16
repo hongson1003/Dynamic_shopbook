@@ -10,7 +10,6 @@ import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 
-// Định nghĩa kiểu cho customStyles
 interface CustomStyles {
   content: {
     top: string;
@@ -62,14 +61,15 @@ const ProModal: React.FC = () => {
     });
 
   useEffect(() => {
-    if (homeBannerConfig) {
-      const bannerSessionId = sessionStorage.getItem('bannerSessionId');
-      if (Number(bannerSessionId) === Number(homeBannerConfig?.id)) {
-        return;
-      }
-      setIsOpen(true);
-      sessionStorage.setItem('bannerSessionId', homeBannerConfig?.id + '');
-    }
+    // if (homeBannerConfig) {
+    //   const bannerSessionId = sessionStorage.getItem('bannerSessionId');
+    //   if (Number(bannerSessionId) === Number(homeBannerConfig?.id)) {
+    //     return;
+    //   } else {
+    //     setIsOpen(true);
+    //     sessionStorage.setItem('bannerSessionId', homeBannerConfig?.id + '');
+    //   }
+    // }
   }, [homeBannerConfig]);
 
   const afterOpenModal = () => {

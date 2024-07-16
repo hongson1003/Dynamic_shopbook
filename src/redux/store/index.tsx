@@ -6,10 +6,12 @@ import {
 } from '@reduxjs/toolkit';
 
 import { cartReducer, storeReducer } from '../slices';
+import fire from '../fire';
 
 const appReducer = combineReducers({
   storeStore: storeReducer,
   cartStore: cartReducer,
+  fire: fire,
 });
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {

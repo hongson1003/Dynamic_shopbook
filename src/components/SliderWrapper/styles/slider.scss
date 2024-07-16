@@ -70,9 +70,6 @@
       li {
         margin: 0;
         width: 10px;
-        &:nth-child(n + 3) {
-          display: none;
-        }
       }
     }
   }

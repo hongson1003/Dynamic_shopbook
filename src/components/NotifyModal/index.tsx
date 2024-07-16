@@ -5,14 +5,14 @@ const NotifyModal = ({ isOpen, onClose, title }: { isOpen: boolean, onClose: () 
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="relative w-11/12 max-w-md p-6 bg-white rounded-lg shadow-lg">
+            <div className="w-4/5 max-w-md p-6 bg-white rounded-lg shadow-lg">
                 <button
                     onClick={onClose}
                     className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition duration-300"
                 >
                     &times;
                 </button>
-                <p className="text-xl font-semibold mb-4 text-center text-gray-900">{title} !</p>
+                <p className="text-md font-semibold text-center text-gray-900">{title} !</p>
                 <div className="flex justify-center">
                     <button
                         onClick={onClose}

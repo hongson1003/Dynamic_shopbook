@@ -15,9 +15,9 @@ const ConfirmDeleteModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="rounded-lg bg-white p-6">
+      <div className="w-4/5 rounded-lg bg-white p-6">
         <h2 className="mb-4 text-lg font-semibold">Xác nhận xóa</h2>
-        <p className="mb-4">{title}</p>
+        <p className="mb-4 text-sm">{title}</p>
         <div className="flex justify-end space-x-4">
           <button
             onClick={onClose}

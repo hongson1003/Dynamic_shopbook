@@ -24,18 +24,14 @@ const renderHomeConfigType = [
     type: CmsCategoryRenderType.SLIDER,
     href: '/slider',
   },
-  {
-    type: CmsCategoryRenderType.ARTICLE,
-    href: '/tin-tuc',
-  },
+  // {
+  //   type: CmsCategoryRenderType.ARTICLE,
+  //   href: '/tin-tuc',
+  // },
   // {
   //   type: CmsCategoryRenderType.PROMOTION,
   //   href: '/khuyen-mai',
   // },
-  {
-    type: CmsCategoryRenderType.ZALO_ARTICLE,
-    href: '/zalo-article',
-  },
   // {
   //   type: CmsCategoryRenderType.LINK,
   //   href: '/link',
@@ -68,22 +64,24 @@ const Menu = async () => {
       ))
     );
   return (
-    <div className="w-ful h-full bg-almost-white p-2">
-      <div className="container flex items-center justify-between">
-        <div className="flex space-x-2">
+    <div className="w-full h-full bg-almost-white p-2">
+      <div className="container w-full flex items-center">
+        <div className="flex flex-row flex-wrap">
           {
             homeConfigType?.map((item: any) => {
               return renderHomeConfigType.map((type) => {
                 if (item.renderType === type.type) {
                   return (
                     <MenuSelection
+                      key={item.id}
                       href={type.href}
                       title={item.name}
                       id={item.id}
                     />
-                  )
+                  );
                 }
-              })
+                return null;
+              });
             })
           }
         </div>

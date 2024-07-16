@@ -4,4 +4,5 @@ export enum LOCAL_STORAGE {
   USER_ID = '@user_id',
   THEME_CONFIG = '@theme_config',
   CART = '@cart',
+  THEME = '@theme',
 }

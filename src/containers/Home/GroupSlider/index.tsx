@@ -1,19 +1,23 @@
 'use client';
 import CustomImage from '@/components/Image';
 import SliderWrapper from '@/components/SliderWrapper';
+import { CATEGORIES } from '@/constants';
 import { CmsCategoryModel } from '@/models';
-
+import { useRouter } from 'next/navigation';
+import React from 'react';
 const GroupSlider = ({ data, id }: { data: CmsCategoryModel[], id: string }) => {
+  const router = useRouter();
   return (
-    <div id={id}>
+    <div id={id} className='flex'>
       <SliderWrapper>
         {data.map(item => (
           <CustomImage
             key={item.id}
-            ratio="video"
             alt={item?.name}
-            className="cursor-pointer object-cover md:max-h-96"
+            ratio='13/8'
+            className="cursor-pointer md:max-h-96 w-full h-full"
             avatarMetadata={item?.avatarMetadata}
+            onClick={() => {router.push(`${CATEGORIES}?categoryId=${item.id}`)}}
           />
         ))}
       </SliderWrapper>

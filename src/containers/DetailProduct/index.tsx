@@ -39,13 +39,13 @@ const DetailProduct = ({ detailProduct }: { detailProduct: ProductModel }) => {
     }
   };
   useEffect(() => {
-    if (detailProduct) {
+    if (detailProduct && storeInfo?.id) {
       fetchRelatedProducts();
     }
   }, [storeInfo, detailProduct]);
 
   return (
-    <div className="container px-2">
+    <div className="container">
       <div className="hidden md:block">
         <Breadcrumb title={'Chi tiết sản phẩm'} />
       </div>

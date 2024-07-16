@@ -57,7 +57,7 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="flex h-full w-full items-center justify-center rounded-full bg-blue-500 bg-opacity-75 shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          className="flex h-full w-full items-center mb-24 justify-center rounded-full bg-black bg-opacity-75 shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 z-50"
         >
           <Image src={TopIcon} alt="Scroll to top" width={25} height={25} />
         </button>

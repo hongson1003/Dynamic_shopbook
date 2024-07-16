@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'blue-900': '10px 10px 20px rgba(0, 0, 139, 0.5)', // Tạo bóng đổ màu xanh đậm
+      },
       aspectRatio: {
         '4/3': '4 / 3',
         '5/3': '5 / 3',
@@ -36,7 +39,7 @@ const config: Config = {
       container: {
         center: true,
         padding: {
-          DEFAULT: '0',
+          DEFAULT: '10px',
           sm: '2rem',
           lg: '4rem',
           xl: '5rem',

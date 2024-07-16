@@ -23,7 +23,7 @@ const ResultSearchPage = async ({
   return (
     <div
       id="main-search-product"
-      className="max-h-screen flex flex-col"
+      className="max-h-screen flex flex-col bg-[--background-light-color]"
     >
       <MobileHeader />
       <MainSearch params={params} />

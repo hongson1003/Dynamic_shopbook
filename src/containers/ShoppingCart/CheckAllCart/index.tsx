@@ -1,14 +1,16 @@
 'use client';
 import ConfirmDeleteModal from '@/components/DeleteModal';
 import { ItemCartModel } from '@/models/itemCartModel';
-import { removeFullItems, setFullListItems } from '@/redux/slices/cart-slice';
+import { getCheckList, removeFullItems, removeListItems, setFullListItems } from '@/redux/slices/cart-slice';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CheckAllCart = ({ items }: { items: ItemCartModel[] }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [checked, setChecked] = useState([]);
   const dispatch = useDispatch();
   const cartStore = useSelector((state: any) => state.cartStore);
+  const cart = JSON.parse(localStorage.getItem('@cart') || '[]');
 
   const handleOnChange = (checked: boolean) => {
     if (checked) dispatch(setFullListItems(items as ItemCartModel[]));
@@ -16,8 +18,16 @@ const CheckAllCart = ({ items }: { items: ItemCartModel[] }) => {
   };
 
   const handleConfirmDelete = () => {
-    localStorage.removeItem('@cart');
-    dispatch(removeFullItems());
+    if (cartStore.checkList.length === cart.length) {
+      dispatch(removeFullItems());
+      localStorage.setItem('@cart', JSON.stringify([]));
+    } else {
+      const updatedCart = cart.filter(
+        (item: ItemCartModel) => !cartStore.checkList.some((checkItem: ItemCartModel) => checkItem.id === item.id)
+      );
+      dispatch(removeListItems(updatedCart));
+      localStorage.setItem('@cart', JSON.stringify(updatedCart));
+    }
     setIsModalOpen(false);
   };
 
@@ -31,14 +41,14 @@ const CheckAllCart = ({ items }: { items: ItemCartModel[] }) => {
             onChange={(e) => handleOnChange(e.target.checked)}
             checked={cartStore.checkList.length === items?.length}
           />
-          <p className="text-sm font-semibold text-gray-700">Chọn tất cả ({items?items.length:0} sản phẩm)</p>
+          <p className="text-sm font-semibold text-gray-700">Chọn tất cả</p>
         </div>
         <div className="flex flex-1 justify-end">
           <button
             onClick={() => setIsModalOpen(true)}
             className={`text-sm font-bold text-red-500 ${cartStore.total === 0 ? 'hidden' : ''}`}
           >
-            Xóa
+            Xóa mục đã chọn
           </button>
         </div>
       </div>
@@ -46,7 +56,7 @@ const CheckAllCart = ({ items }: { items: ItemCartModel[] }) => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={() => handleConfirmDelete()}
-        title="Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng không?"
+        title={`Bạn có chắc muốn xóa ${cartStore.checkList.length} sản phẩm đã chọn khỏi giỏ hàng không?`}
       />
     </>
   );

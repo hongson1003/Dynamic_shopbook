@@ -2,13 +2,17 @@ import cartIcon from '@/assets/svg/cart-shopping-svgrepo-com.svg';
 import NotifyModal from '@/components/NotifyModal';
 import { ProductModel } from '@/models';
 import { ItemCartModel } from '@/models/itemCartModel';
+import { removeFullItems, setFullListItems } from '@/redux/slices/cart-slice';
 import Image from 'next/image';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 const ButtonFooter = ({ product }: { product: ProductModel }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
+  const cartStore = useSelector((state: any) => state.cartStore);
+  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     const cart = localStorage.getItem('@cart');
@@ -34,7 +38,8 @@ const ButtonFooter = ({ product }: { product: ProductModel }) => {
         };
         cartArray.push(newCartItem);
       }
-
+      dispatch(removeFullItems());
+      dispatch(setFullListItems(cartStore.checkList));
       localStorage.setItem('@cart', JSON.stringify(cartArray));
     } else {
       const newCartItem: ItemCartModel = {
@@ -46,8 +51,8 @@ const ButtonFooter = ({ product }: { product: ProductModel }) => {
         price: product.price,
       };
       localStorage.setItem('@cart', JSON.stringify([newCartItem]));
+      dispatch(setFullListItems([]));
     }
-
     setModalTitle('Đã thêm vào giỏ hàng');
     setIsModalOpen(true);
   };
@@ -59,7 +64,9 @@ const ButtonFooter = ({ product }: { product: ProductModel }) => {
         aria-label="Consultation"
       >
         <Image src="/headphone.svg" alt="Phone icon" width={24} height={24} />
-        <span className="text-sm font-bold">Tư vấn</span>
+        <span className="text-sm font-bold text-[--text-light-color]">
+          Tư vấn
+        </span>
       </button>
 
       <button
@@ -68,7 +75,9 @@ const ButtonFooter = ({ product }: { product: ProductModel }) => {
         aria-label="Add to cart"
       >
         <Image src={cartIcon} alt="Cart icon" width={24} height={24} />
-        <span className="text-sm font-bold">Thêm</span>
+        <span className="text-sm font-bold text-[--text-light-color]">
+          Thêm
+        </span>
       </button>
 
       <button

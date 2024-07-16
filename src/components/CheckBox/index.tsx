@@ -21,7 +21,6 @@ const CheckBox = ({ checked, onChange, label }: CheckBoxProps) => {
         htmlFor={checkBoxId}
         className="text-default-light dark:text-default-dark"
       >
-        <span></span>
         {label && (
           <div className="text-color-light dark:text-color-dark pl-2">
             {label}

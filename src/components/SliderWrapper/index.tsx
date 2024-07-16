@@ -1,5 +1,5 @@
 'use client';
-import React, { CSSProperties, useMemo } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
 import Slider, { Settings } from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -24,14 +24,12 @@ const arrowStyles: CSSProperties = {
   borderRadius: '8px',
 };
 
-const dots = 2;
-
 const SliderWrapper = ({
   children,
   settings,
 }: {
   children: React.ReactNode;
-  settings?: Settings;
+  settings?: Settings & { numberOfDots?: number };
 }) => {
   const sliderSettings = useMemo(
     () => ({
@@ -44,22 +42,15 @@ const SliderWrapper = ({
       nextArrow: <NextArrow styles={arrowStyles} />,
       prevArrow: <PrevArrow styles={arrowStyles} />,
       ...settings,
+      numberOfDots: 2,
     }),
     [settings],
   );
 
+
   return (
     <>
       <Slider {...sliderSettings}>{children}</Slider>
-      <style jsx global>{`
-        @media screen and (max-width: 560px) {
-          .slick-dots .slick-active {
-            button {
-              opacity: 1;
-            }
-          }
-        }
-      `}</style>
     </>
   );
 };

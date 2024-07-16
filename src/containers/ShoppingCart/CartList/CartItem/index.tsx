@@ -10,6 +10,7 @@ import {
   removeCheckListItem,
 } from '@/redux/slices/cart-slice';
 import { useRouter } from 'next/navigation';
+import { PRODUCT } from '@/constants';
 
 const CartItem = ({
   item,
@@ -22,7 +23,7 @@ const CartItem = ({
   const dispatch = useDispatch();
   const router = useRouter();
   const handleOnClick = (item: ItemCartModel) => {
-    router.push(`/product/${item.productID}`);
+    router.push(`${PRODUCT}/${item.productID}`);
   };
   const handleOnChange = (checked: boolean) => {
     if (checked) {
@@ -46,7 +47,7 @@ const CartItem = ({
   };
 
   return (
-    <div className="flex items-center gap-2 flex-1">
+    <div className="flex items-center gap-2 flex-1 md:mt-10 md:border-b-2 md:pb-5">
       <input
         type="checkbox"
         className="rounded-md border px-2 py-1 pr-5 text-xs text-black focus:border-transparent focus:outline-none sm:py-2 md:pr-8"
@@ -63,6 +64,7 @@ const CartItem = ({
             width={1000}
             height={1000}
             className="h-24 w-24 object-cover rounded-md"
+            priority
           />
         </div>
         <div className="flex flex-col justify-between flex-1">
@@ -71,7 +73,7 @@ const CartItem = ({
           </p>
           <div className="mt-1 flex flex-1 items-center justify-between">
             <QuantityProductManagement item={item} />
-            <div className="flex">
+            <div className="flex items-end h-full">
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="text-sm font-bold text-red-500"

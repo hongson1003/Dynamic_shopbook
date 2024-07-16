@@ -1,31 +1,20 @@
 import React from 'react';
-import { footerConfig } from '../../../footerConfig';
-
-const Footer = () => {
+import { storeService } from '@/services/storeService';
+import FooterInfo from './FooterInfo';
+const fetchStoreConfig = async () => {
+  try {
+    const storeInfo = await storeService.getAll();
+    if (!storeInfo) return null;
+    return storeInfo[0];
+  } catch (error) {
+    console.log(error);
+  }
+};
+const Footer = async () => {
+  const storeInfo = await fetchStoreConfig();
   return (
-    <footer className="bg-gray-800 p-2 text-white md:p-4">
-      <div className="container mx-auto w-full">
-        <div className="rounded-md bg-gray-900 p-2 shadow-md md:p-4">
-          <h2 className="mb-2 text-sm font-bold">{footerConfig.companyName}</h2>
-          <p className="mb-2 text-sm">Địa chỉ: {footerConfig.address}</p>
-          <p className="mb-2 text-sm">
-            Email:{' '}
-            <a
-              href={`mailto:${footerConfig.email}`}
-              className="text-sm text-blue-400"
-            >
-              {footerConfig.email}
-            </a>
-          </p>
-          <p className="mb-2 text-sm">
-            Điện thoại:{' '}
-            <a href={`tel:${footerConfig.phone}`} className="text-blue-400">
-              {footerConfig.phone}
-            </a>
-          </p>
-          <p className="mb-2 text-sm">Mã số thuế: {footerConfig.vat}</p>
-        </div>
-      </div>
+    <footer className="bg-[var(--bg-header)] text-white hidden md:block">
+      <FooterInfo {...storeInfo} />
     </footer>
   );
 };

@@ -17,4 +17,9 @@ export interface StoreConfig {
   maxDayResetMembership?: number;
   onePointToMoney?: string;
   courierService?: OrderCourierService[];
+  name?: string;
+  phoneNumber?: string;
+  address?: string;
+  vat?: string;
 }
+

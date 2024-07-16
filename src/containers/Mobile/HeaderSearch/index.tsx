@@ -29,13 +29,13 @@ const MobileHeader: React.FC = () => {
   }, [searchDebouce]);
 
   return (
-    <header className=" bg-[var(--bg-header)] p-2">
+    <header className=" bg-[var(--bg-header)] py-2 px-1">
       <div className='container flex items-center'>
         <Link href={'/'} className="text-blue-500 focus:outline-none">
           <Image
             src={LeftArrow}
-            width={25}
-            height={25}
+            width={20}
+            height={20}
             alt="back"
             color="white"
           />

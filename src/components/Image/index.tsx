@@ -10,6 +10,7 @@ interface Ratio {
   '4/3'?: string;
   '21/9'?: string;
   '9/16'?: string;
+  '13/8'?: string;
 }
 
 interface ImageProps {
@@ -44,7 +45,7 @@ const LazyImage = ({
   onClick,
   avatarMetadata,
   customRatio,
-  size = 'small',
+  size = 'large',
   style,
   priority,
 }: ImageProps) => {
@@ -77,6 +78,7 @@ const LazyImage = ({
         e.target.onerror = null;
       }}
       className={`w-full object-cover transition-all ${ratioClass[ratio]} ${customRatio} ${className}`}
+      onClick={onClick}
     />
   );
 };

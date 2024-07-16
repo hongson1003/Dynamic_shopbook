@@ -65,6 +65,7 @@ export const {
   removeFullItems,
   removeListItems,
   modifyQuantity,
+  getCheckList
 } = actions;
 
 export default reducer;
