@@ -1,7 +1,7 @@
-import axios from 'axios'
-import { ZAppModel } from '@/models'
-import { ZAPP_URL } from '@/constants'
-import config from '../../config'
+import axios from 'axios';
+import { ZAppModel } from '@/models';
+import { ZAPP_URL } from '@/constants';
+import config from '../../config';
 
 export const zappService = {
   getAppConfig: async (): Promise<ZAppModel> => {
@@ -11,7 +11,7 @@ export const zappService = {
     })
       .then((res) => res.data)
       .catch((err) => {
-        throw err
-      })
+        throw err;
+      });
   },
-}
+};

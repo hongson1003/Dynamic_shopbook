@@ -1,45 +1,44 @@
 'use client';
-import { useColorMode } from "@/hooks/useColorMode"
-import { AppDispatch } from "@/redux"
-import { FC, ReactNode } from "react"
-import { useQuery } from "react-query"
-import { useDispatch } from "react-redux"
-import config from "../../../config"
-import { QueryKey } from "@/types/api"
-import { ThemeConfig, ZAppModel } from "@/models"
-import { zappService } from "@/services/zappService"
-import { LOCAL_STORAGE } from "@/constants"
-import { setThemeConfig } from "@/redux/slices/themeConfig-slice"
+import { LOCAL_STORAGE } from '@/constants';
+import { ThemeConfig, ZAppModel } from '@/models';
+import { AppDispatch } from '@/redux';
+import { setThemeConfig } from '@/redux/slices/themeConfig-slice';
+import { zappService } from '@/services/zappService';
+import { QueryKey } from '@/types/api';
+import { FC, ReactNode } from 'react';
+import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
+import config from '../../../config';
 
 export const ConfigProvider: FC<{
-  children: ReactNode
+  children: ReactNode;
 }> = ({ children }) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
 
   //useColorMode()
 
   useQuery({
     queryKey: [QueryKey.ZAPP, config.APP_ID],
     queryFn: async () => {
-      let appConfig: ZAppModel = {}
+      let appConfig: ZAppModel = {};
 
       try {
-        appConfig = await zappService.getAppConfig()
+        appConfig = await zappService.getAppConfig();
         localStorage.setItem(
           LOCAL_STORAGE.THEME_CONFIG,
           JSON.stringify(appConfig) || '{}',
-        )
+        );
       } catch (err) {
         appConfig = JSON.parse(
           localStorage.getItem(LOCAL_STORAGE.THEME_CONFIG) || '{}',
-        )
+        );
       }
-      dispatch(setThemeConfig(appConfig as ThemeConfig))
+      dispatch(setThemeConfig(appConfig as ThemeConfig));
       const { light, dark } = (
         appConfig?.themeConfig ? JSON.parse(appConfig?.themeConfig) : {}
-      ) as ThemeConfig
+      ) as ThemeConfig;
 
-      const { color, article, category, product, slider } = light || {}
+      const { color, article, category, product, slider } = light || {};
 
       const {
         background,
@@ -50,19 +49,19 @@ export const ConfigProvider: FC<{
         primary,
         secondary,
         text,
-      } = color || {}
+      } = color || {};
 
       const cssVariables: Record<string, string | undefined | number> = {
         '--bg-header': primary,
         '--zmp-primary-color': primary,
         '--zaui-light-option-selected-color': primary,
-        '--primary-light-color': primary,//
-        '--secondary-light-color': secondary,//
+        '--primary-light-color': primary, //
+        '--secondary-light-color': secondary, //
         '--primary-opacity-light-color': `${primary}1a`,
-        '--background-light-color': background,//
-        '--foreground-light-color': foreground,//
-        '--default-light-color': defaultColor,//
-        '--text-light-color': text,//
+        '--background-light-color': background, //
+        '--foreground-light-color': foreground, //
+        '--default-light-color': defaultColor, //
+        '--text-light-color': text, //
         '--gray-light-color': border,
         '--white-light-color': mix,
 
@@ -89,9 +88,7 @@ export const ConfigProvider: FC<{
         '--article-border-radius-light': `${article?.radius}px`,
         '--article-border-width-light': article?.borderWidth,
         '--article-border-color-light': article?.borderColor,
-      }
-
-      //primary && zaloService.changeStatusBarColor(primary)
+      };
 
       Object.keys(cssVariables)
         .filter((cv) => cssVariables[cv])
@@ -99,13 +96,11 @@ export const ConfigProvider: FC<{
           document.documentElement.style.setProperty(
             cv,
             String(cssVariables[cv]),
-          )
-        })
-
-      //await zaloService.closeLoadingScreen()
+          );
+        });
     },
     refetchOnWindowFocus: false,
-  })
+  });
 
-  return <>{children}</>
-}
+  return <>{children}</>;
+};
